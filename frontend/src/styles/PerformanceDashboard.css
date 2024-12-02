@@ -1,0 +1,9 @@
+/* PerformanceDashboard.css */
+.metrics-graph-container {
+    margin: 20px;
+    padding: 20px;
+    max-width: 70%; /* Optional: limits the graph width */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  

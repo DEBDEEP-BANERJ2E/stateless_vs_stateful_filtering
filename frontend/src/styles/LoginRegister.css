@@ -1,0 +1,39 @@
+/* src/styles/LoginRegister.css */
+
+.login-register {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align items at the top */
+    align-items: center; /* Center horizontally */
+    min-height: 100vh; /* Take up the full height of the screen */
+    padding: 20px;
+    background-color: #f4f4f9;
+  }
+  
+  .form-toggle {
+    margin-bottom: 20px;
+  }
+  
+  .form-toggle button {
+    background-color: #4CAF50; /* Green theme */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .form-toggle button:hover {
+    background-color: #45a049;
+  }
+  
+  .form-container {
+    max-width: 400px;
+    width: 100%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
