@@ -1,0 +1,12 @@
+Sample Output for filter3.py program:
+
+*** Performance Comparison Report ***
+
+Average Latency (Stateful): 0.000001 seconds
+Average Latency (Stateless): 0.000000 seconds
+Average Throughput (Stateful): 0.97 MB
+Average Throughput (Stateless): 0.98 MB
+Average CPU Usage (Stateful): 7.82%
+Average CPU Usage (Stateless): 6.17%
+Average Memory Usage (Stateful): 66.40%
+Average Memory Usage (Stateless): 65.51%

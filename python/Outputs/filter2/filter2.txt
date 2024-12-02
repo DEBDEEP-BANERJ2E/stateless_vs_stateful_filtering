@@ -1,0 +1,14 @@
+Sample Output for filter2.py program:
+
+Running performance benchmark... This may take a few moments.
+
+*** Performance Comparison Report ***
+
+Average Latency (Stateful): 0.000016 seconds
+Average Latency (Stateless): 0.000003 seconds
+Throughput (Stateful): 0.98 MB
+Throughput (Stateless): 0.98 MB
+Average CPU Usage (Stateful): 0.53%
+Average CPU Usage (Stateless): 0.00%
+Average Memory Usage (Stateful): 84.31%
+Average Memory Usage (Stateless): 84.31%
