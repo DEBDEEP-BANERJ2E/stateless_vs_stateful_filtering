@@ -1,0 +1,24 @@
+/* Main container for the LabDashboard */
+.LabDashboard {
+  display: flex; /* Sidebar and canvas are side-by-side */
+  height: 100vh; /* Full viewport height */
+  overflow: hidden; /* Prevent scrolling */
+}
+
+/* Sidebar styles */
+.Sidebar {
+  position: relative;
+  z-index: 2; /* Keep above the canvas */
+  width: 250px; /* Fixed sidebar width */
+  background: linear-gradient(180deg, #2d3748, #1a202c);
+}
+
+/* Canvas styles */
+canvas {
+  flex-grow: 1; /* Fill remaining space */
+  height: 100vh; /* Full height */
+  width: calc(100vw - 250px); /* Full width minus sidebar */
+  z-index: 1; /* Place behind other elements */
+  display: block; /* Remove scrollbars */
+  background-color: transparent;
+}

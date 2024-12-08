@@ -1,0 +1,206 @@
+/* Input Page Styles - Scoped */
+.input-page .input-container {
+    width: 100%;
+    max-width: 750px;
+    margin: 0px auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+  }
+  
+  .input-page h2 {
+    text-align: center;
+    color: #1f1f1f;
+    font-size: 28px;
+    margin-bottom: 30px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  
+  .input-page h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: #4CAF50;
+    margin: 20px auto;
+    border-radius: 4px;
+  }
+  
+  /* Form Layout */
+  .input-page form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    row-gap: 30px;
+    padding: 10px;
+    position: relative;
+  }
+  
+  /* Green column separator between the two sides */
+  .input-page form::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 80%;
+    background-color: #4CAF50;
+    transform: translateX(-50%);
+  }
+  
+  /* Form groups (input fields and labels) */
+  .input-page .form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  
+  /* Labels */
+  .input-page label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #444;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .input-page label:hover {
+    color: #4CAF50;
+  }
+  
+  /* Input Fields */
+  .input-page input[type="number"],
+  .input-page select,
+  .input-page input[type="radio"],
+  .input-page input[type="checkbox"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+    outline: none;
+    width: 90%;
+    max-width: 300px;
+  }
+  
+  .input-page input[type="number"]:focus,
+  .input-page select:focus,
+  .input-page input[type="radio"]:focus,
+  .input-page input[type="checkbox"]:focus {
+    border-color: #4CAF50;
+    background-color: #f1faff;
+  }
+  
+  .input-page input[type="radio"] {
+    width: auto;
+  }
+  
+  .input-page input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+  }
+  
+  /* Dropdown (select) styling */
+  .input-page select {
+    cursor: pointer;
+    background-color: #fff;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"%3E%3Cpath fill="none" stroke="black" stroke-width="32" d="M96 192l160 160 160-160"/%3E%3C/svg%3E');
+    background-position: right 8px center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    width: 90%;
+    max-width: 300px;
+  }
+  
+  .input-page select:focus {
+    border-color: #4CAF50;
+  }
+  
+  /* Checkbox container */
+  .input-page .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  /* Submit button */
+  .input-page button.submit-button {
+    grid-column: span 2;
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 30px;
+    width: auto;
+  }
+  
+  .input-page button.submit-button:hover {
+    background-color: #45a049;
+  }
+  
+  .input-page button.submit-button:active {
+    background-color: #388e3c;
+  }
+  
+  .input-page button.submit-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .input-page .input-container {
+      padding: 20px;
+    }
+  
+    .input-page form {
+      grid-template-columns: 1fr;
+    }
+  
+    .input-page button.submit-button {
+      width: 100%;
+    }
+  
+    .input-page input[type="number"],
+    .input-page select,
+    .input-page input[type="radio"] {
+      width: 100%;
+      max-width: none;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .input-page h2 {
+      font-size: 24px;
+    }
+  
+    .input-page label {
+      font-size: 14px;
+    }
+  
+    .input-page input[type="number"],
+    .input-page select,
+    .input-page input[type="radio"] {
+      font-size: 14px;
+    }
+  }
+  

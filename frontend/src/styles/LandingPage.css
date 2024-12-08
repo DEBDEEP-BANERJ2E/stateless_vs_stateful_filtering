@@ -1,0 +1,150 @@
+/* LandingPage.css - Scoped CSS for LandingPage */
+.landing-page-container {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #eaf4fd; /* Light Sky Blue background */
+  }
+  
+  .landing-page-header {
+    background-color: #006ab6; /* Dark Blue */
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .landing-page-header .logo h1 {
+    margin: 0;
+    font-size: 40px;
+    font-weight: 700;
+  }
+  
+  .landing-page-header .logo p {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 400;
+  }
+  
+  .landing-page-cta-button {
+    background-color: #ffffff;
+    color: #006ab6; /* Dark Blue */
+    font-size: 18px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .landing-page-cta-button:hover {
+    background-color: #005083; /* Darker Blue */
+    color: white;
+  }
+  
+  .landing-page-section {
+    padding: 150px 20px;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .landing-page-h2 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #003e5b; /* Darker Blue for headers */
+    margin-bottom: 20px;
+  }
+  
+  .landing-page-about p,
+  .landing-page-how-it-works p,
+  .landing-page-benefits ul,
+  .landing-page-contact form {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  .landing-page-key-features ul,
+  .landing-page-benefits ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .landing-page-key-features li,
+  .landing-page-benefits li {
+    font-size: 16px;
+    color: #444;
+    margin-bottom: 15px;
+  }
+  
+  .landing-page-key-features li strong,
+  .landing-page-benefits li strong {
+    color: #007acc; /* Lighter Blue for highlights */
+  }
+  
+  .landing-page-form input,
+  .landing-page-form textarea {
+    padding: 12px;
+    width: 100%;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+  
+  .landing-page-form button {
+    background-color: #006ab6; /* Dark Blue */
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .landing-page-form button:hover {
+    background-color: #005083; /* Darker Blue */
+  }
+  
+  .landing-page-footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #003e5b; /* Dark Blue */
+    color: white;
+  }
+  
+  .landing-page-footer p {
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .landing-page-header {
+      padding: 30px 15px;
+    }
+  
+    .landing-page-cta-button {
+      font-size: 16px;
+      padding: 10px 25px;
+    }
+  
+    .landing-page-section {
+      padding: 40px 15px;
+    }
+  
+    .landing-page-h2 {
+      font-size: 24px;
+    }
+  
+    .landing-page-form input,
+    .landing-page-form textarea {
+      font-size: 14px;
+    }
+  
+    .landing-page-form button {
+      font-size: 16px;
+      padding: 10px 25px;
+    }
+  }
+  

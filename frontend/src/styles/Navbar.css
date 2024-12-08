@@ -1,0 +1,107 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  background-color: #283448;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 1rem;
+  z-index: 20;
+  margin-top: 60px;
+}
+
+.navbar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.navbar-label {
+  color: white;
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+}
+
+.navbar-select {
+  width: 150px;
+  padding: 6px;
+  background-color: #4a5568;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+}
+
+.navbar-select:hover {
+  background-color: #5a6676;
+  cursor: pointer;
+}
+
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  background-color: #4a5568; /* Match background with the other dropdown */
+  color: white; /* Text color for consistency */
+  padding: 6px; /* Same padding as the .navbar-select */
+  border: none; /* Remove the border to match the select dropdown */
+  border-radius: 4px; /* Match border radius */
+  outline: none; /* Remove outline */
+  width: 250px; /* Increased width for the dropdown */
+}
+
+.custom-dropdown.open .dropdown-list {
+  display: block;
+}
+
+.dropdown-header {
+  font-size: 14px;
+  color: white; /* Ensure text is white to match the navbar */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #4a5568; /* Match background with the other dropdown */
+  border: 1px solid #ccc;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 10;
+  display: none;
+  list-style: none; /* Removes dots/bullets */
+  width: 250px; /* Increased width for the dropdown list */
+}
+
+.dropdown-item {
+  padding: 8px;
+  cursor: pointer;
+  color: white; /* Ensure text color matches */
+}
+
+.dropdown-item:hover {
+  background-color: #5a6676; /* Highlight color on hover, similar to .navbar-select */
+}
+
+.dropdown-item label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dropdown-item input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.dropdown-arrow {
+  font-size: 12px;
+  color: #666;
+  margin-left: 5px;
+}

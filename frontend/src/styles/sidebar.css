@@ -1,0 +1,64 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background-color: #405a87;
+    z-index: 10; /* Keep sidebar above other elements */
+    overflow: hidden;
+    color: white;
+    margin-top: 150px;
+  }
+  
+  /* Adjusting margin for the menu items */
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 5rem 0 0; /* Push menu items below the toggle button */
+  }
+  
+  .sidebar li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+  .sidebar li:hover {
+    background-color: #4a5568;
+    transform: translateX(5px);
+  }
+  
+  .sidebar input[type="range"] {
+    flex-grow: 1;
+    height: 6px;
+    background: #718096;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  /* Styling for the toggle button */
+  .toggle-btn {
+    position: absolute;
+    top: 1rem;
+    left: 1rem; /* Align toggle button near the edge */
+    z-index: 20; /* Keep above everything */
+    border: none;
+    cursor: pointer;
+    color: white;
+    background: transparent;
+  }
+  
+  /* Sidebar width transitions */
+  .sidebar.w-64 {
+    width: 14rem;
+  }
+  
+  .sidebar.w-12 {
+    width: 4rem;
+  }
+  
+  .faBars-btn {
+    font-size: 2rem; /* Adjust size as needed */
+  }
