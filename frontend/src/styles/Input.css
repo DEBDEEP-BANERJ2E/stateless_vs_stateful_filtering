@@ -140,7 +140,7 @@
   /* Submit button */
   .input-page button.submit-button {
     grid-column: span 2;
-    padding: 12px 20px;
+    padding: 16px 20px;
     background-color: #4CAF50;
     color: #fff;
     font-size: 16px;
@@ -150,7 +150,8 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: 30px;
-    width: auto;
+    margin-left: 290px;
+    width: 150px;
   }
   
   .input-page button.submit-button:hover {

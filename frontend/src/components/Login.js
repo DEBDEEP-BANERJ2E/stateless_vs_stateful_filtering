@@ -40,7 +40,7 @@ const Login = () => {
         setMessage('Login successful!');
         setIsError(false);
         // Optionally redirect the user to another page after successful login
-        window.location.href = '/dashboard'; // Replace with your desired route
+        window.location.href = '/input'; // Replace with your desired route
       } else {
         setMessage('Login failed. Please check your credentials.');
         setIsError(true);
