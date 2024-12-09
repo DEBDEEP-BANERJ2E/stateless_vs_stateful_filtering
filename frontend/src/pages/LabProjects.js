@@ -10,18 +10,21 @@ const LabProjects = () => {
         <h1>Lab Manager</h1>
         <ul>
           <li><Link to="/lab-projects">Examples</Link></li>
-          <li><Link to="/lab-projects" className="active">Recent</Link></li>
-          <li><Link to="/lab-projects">Google Drive</Link></li>
+          <li><Link to="/lab-projects">Recent</Link></li>
+          <li><Link to="/lab-projects">FilterBench Cloud</Link></li>
           <li><Link to="/lab-projects">GitHub</Link></li>
           <li><Link to="/lab-projects">Upload</Link></li>
+          <br></br>
+          <button className="new-notebook"><Link to="/lab-dashboard">+ New Lab</Link></button>
         </ul>
-        <button className="new-notebook">+ New Lab</button>
       </div>
 
       {/* Main Content */}
       <div className="content">
+      <h1 style={{ marginLeft: '20%' }}>FilterBench-Lab Projects</h1>
+
         <div className="search-bar">
-          <input type="text" placeholder="Search notebooks" />
+          <input type="text" placeholder="Search Lab Projects" />
           <button title="Search">
             <i className="fas fa-search"></i>
           </button>
@@ -40,21 +43,25 @@ const LabProjects = () => {
           <tbody>
             <tr>
               <td>
-                <img src="https://placehold.co/20x20" alt="Colab icon" /> Welcome To Colab
+                <img src="https://placehold.co/20x20" alt="Colab icon" /> Welcome To FilterBench
               </td>
               <td>7:28 AM</td>
               <td>Sep 16, 2023</td>
             </tr>
             <tr>
               <td>
-                <img src="https://placehold.co/20x20" alt="Google Drive icon" /> Copy of Welcome To Colab
+              <Link to="/lab-dashboard">
+                <img src="https://placehold.co/20x20" alt="Google Drive icon" />
+                <div style={{ display: 'inline-block', color: 'black' }}>Lab 1</div>
+              </Link>
+
               </td>
               <td>November 26</td>
               <td>November 23</td>
             </tr>
             <tr>
               <td>
-                <img src="https://placehold.co/20x20" alt="Google Drive icon" /> Untitled5.ipynb
+                <img src="https://placehold.co/20x20" alt="Google Drive icon" /> Lab 2
               </td>
               <td>November 19</td>
               <td>November 17</td>

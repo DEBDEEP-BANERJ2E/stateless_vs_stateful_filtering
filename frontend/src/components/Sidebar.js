@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
@@ -46,10 +47,10 @@ const Sidebar = () => {
 
         {/* Menu Items */}
         {isSidebarOpen && (
-        <ul className="space-y-4" style={{ marginTop: "70px" }}> {/* Add margin-top for spacing */}
+        <ul className="space-y-4" style={{ marginTop: "50px" }}> {/* Add margin-top for spacing */}
           <MenuItem icon={faPlus} text="Add an object" />
           <MenuItem icon={faServer} text="Nodes" />
-          <MenuItem icon={faNetworkWired} text="Networks" />
+          <Link to="/traffic-simulation"><MenuItem icon={faNetworkWired} text="Networks" /></Link>
           <MenuItem icon={faCogs} text="Startup-configs" />
           <MenuItem icon={faObjectGroup} text="Configured objects" />
           <MenuItem icon={faEllipsisH} text="More actions" />

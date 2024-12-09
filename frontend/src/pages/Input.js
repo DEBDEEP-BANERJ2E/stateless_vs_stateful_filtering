@@ -215,7 +215,7 @@ const Input = () => {
 
           {/* "Create a Lab" button now wrapped with Link */}
           <div className="button-container">
-          <Link to="/lab-dashboard">
+          <Link to="/lab-projects">
             <button type="button" className="submit-button">
               Create a Lab
             </button>
