@@ -8,11 +8,12 @@ function Header() {
       <nav>
         <ul>
         <h1><Link to="/">FilterBench</Link></h1>
-          <li><Link to="/configuration">Configuration</Link></li>
-          <li><Link to="/traffic-simulation">Traffic Simulation</Link></li>
           <li><Link to="/performance-dashboard">Performance Dashboard</Link></li>
           <li><Link to="/reports">Reports</Link></li>
           <li><Link to="/lab-dashboard">Lab Dashboard</Link></li>
+          <li><Link to="/lab-projects">Lab Projects</Link></li>
+          <li><Link to="/network">Network Performance Analysis</Link></li>
+          <li><Link to="/traffic-simulation">Traffic Simulation</Link></li>
           <li><Link to="/input">Input</Link></li>
           <li><Link to="/login-register">Login/Register</Link></li> {/* Link to Login/Register page */}
         </ul>

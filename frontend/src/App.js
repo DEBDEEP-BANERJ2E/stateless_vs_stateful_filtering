@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 //import Home from "./pages/Home";
-import Configuration from "./pages/Configuration";
+import NetworkAnalysis from "./pages/NetworkAnalysis";
 import TrafficSimulation from "./pages/TrafficSimulation";
 import PerformanceDashboard from "./pages/PerformanceDashboard";
 import Reports from "./pages/Reports";
@@ -11,6 +11,7 @@ import LoginRegister from "./pages/LoginRegister"; // Import the LoginRegister p
 import Input from "./pages/Input";
 import LabDashboard from "./pages/LabDashboard";
 import LandingPage from "./pages/LandingPage";
+import LabProjects from "./pages/LabProjects";
 import "./App.css";
 
 function App() {
@@ -26,11 +27,12 @@ function App() {
       
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/configuration" element={<Configuration />} />
+        <Route path="/network" element={<NetworkAnalysis />} />
         <Route path="/traffic-simulation" element={<TrafficSimulation />} />
         <Route path="/performance-dashboard" element={<PerformanceDashboard />} />
         <Route path="/reports" element={<Reports />} />
         <Route path="/lab-dashboard" element={<LabDashboard />} />
+        <Route path="/lab-projects" element={<LabProjects />} />
         <Route path="/input" element={<Input />} />
         <Route path="/login-register" element={<LoginRegister />} /> {/* New route */}
       </Routes>
