@@ -55,7 +55,7 @@
   color: white;
 }
 
-.sidebar .new-notebook {
+.sidebar .new-lab {
   margin-top: auto;
   background-color: #3b82f6; /* Blue button */
   color: white;
@@ -67,7 +67,7 @@
   transition: background-color 0.3s;
 }
 
-.sidebar .new-notebook:hover {
+.sidebar .new-lab:hover {
   background-color: #2563eb; /* Darker blue */
 }
 

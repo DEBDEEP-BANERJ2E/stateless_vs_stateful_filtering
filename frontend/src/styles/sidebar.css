@@ -1,13 +1,13 @@
 .sidebar {
     position: fixed;
-    top: 70px;
+    top: 100px;
     left: 0;
     height: 100vh;
-    background-color: #405a87;
+    background-color: #030303;
     z-index: 10; /* Keep sidebar above other elements */
     overflow: hidden;
     color: white;
-    margin-top: -100px;
+    margin-top: 70px;
   }
   
   /* Adjusting margin for the menu items */
@@ -20,8 +20,8 @@
   .sidebar li {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem;
+    gap: 0.1rem;
+    padding: 0.1rem;
     transition: background 0.3s ease, transform 0.2s ease;
   }
   

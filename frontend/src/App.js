@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 //import Home from "./pages/Home";
 import NetworkAnalysis from "./pages/NetworkAnalysis";
 import TrafficSimulation from "./pages/TrafficSimulation";
-import PerformanceDashboard from "./pages/PerformanceDashboard";
 import Reports from "./pages/Reports";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -12,6 +11,7 @@ import Input from "./pages/Input";
 import LabDashboard from "./pages/LabDashboard";
 import LandingPage from "./pages/LandingPage";
 import LabProjects from "./pages/LabProjects";
+import BenchmarkingChart from "./pages/BenchmarkingChart";
 import "./App.css";
 
 function App() {
@@ -29,10 +29,10 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/network" element={<NetworkAnalysis />} />
         <Route path="/traffic-simulation" element={<TrafficSimulation />} />
-        <Route path="/performance-dashboard" element={<PerformanceDashboard />} />
         <Route path="/reports" element={<Reports />} />
         <Route path="/lab-dashboard" element={<LabDashboard />} />
         <Route path="/lab-projects" element={<LabProjects />} />
+        <Route path="/benchmarking" element={<BenchmarkingChart />} />
         <Route path="/input" element={<Input />} />
         <Route path="/login-register" element={<LoginRegister />} /> {/* New route */}
       </Routes>

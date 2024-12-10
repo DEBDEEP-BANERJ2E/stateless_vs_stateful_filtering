@@ -15,7 +15,7 @@ const LabProjects = () => {
           <li><Link to="/lab-projects">GitHub</Link></li>
           <li><Link to="/lab-projects">Upload</Link></li>
           <br></br>
-          <button className="new-notebook"><Link to="/lab-dashboard">+ New Lab</Link></button>
+          <button className="new-lab"><Link to="/lab-dashboard">+ New Lab</Link></button>
         </ul>
       </div>
 

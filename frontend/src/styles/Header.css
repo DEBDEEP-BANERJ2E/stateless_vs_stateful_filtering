@@ -1,44 +1,106 @@
+/* Header.css */
 .header {
-    background-color: linear-gradient(180deg, #2d3748, #1a202c);
-    color: white;
-    padding: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .header h1 {
-    margin: 0;
-  }
-  
-  .header ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    gap: 15px;
-  }
-  
-  .header ul li {
-    display: inline;
-  }
-  
-  .header ul li a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  .header ul li a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Header.css */
+  background: linear-gradient(180deg, #3a3f51, #1f2333);
+  color: #ffffff;
+  padding: 2rem 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  margin-top: -120px;
+  margin-left: -50px;
+  margin-bottom: 50px;
+}
+
+.header h1 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.8rem;
+  margin: 0;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.header nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.header nav ul li {
+  position: relative;
+}
+
+.header nav ul li a {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  color: #e0e6ed;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  transition: color 0.3s ease-in-out;
+}
+
+.header nav ul li a:hover {
+  color: #4ecdc4;
+  /*border-bottom: 2px solid #4ecdc4; Add underline effect on hover */
+}
+
+.header nav ul li::after {
+  content: "";
+  display: block;
+  height: 2px;
+  background: transparent;
+  transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  width: 0%;
+}
+
+.header nav ul li:hover::after {
+  width: 100%;
+  background: #4ecdc4;
+}
+
 .header .login-icon {
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: #e0e6ed;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.header .login-icon img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.header .login-icon:hover {
+  color: #4ecdc4;
+}
+  
+  .header a {
+    color: white !important; /* Ensure color is always white */
+    text-decoration: none;   /* Remove underline */
   }
   
-  .header .login-icon img {
-    width: 24px; /* Set a size for the icon */
-    height: 24px;
+  /* Optionally, you can add a hover effect if needed */
+  .header a:hover {
+    color: #e2e8f0;  /* Lighter white or any color you prefer */
+    text-decoration: none; /* Keep it without underline */
+  }
+
+  .header ul li a .login-icon {
+    font-size: 2rem; /* Increased size */
+    color: #e0e6ed;
+    transition: color 0.3s ease-in-out;
   }
   
+  .header ul li a .login-icon:hover {
+    color: #4ecdc4; /* Hover effect for the icon */
+  }

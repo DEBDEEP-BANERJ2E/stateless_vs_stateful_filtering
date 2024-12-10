@@ -14,7 +14,7 @@ import {
   faInfoCircle,
   faInfo,
   faLock,
-  faMoon,
+  faExchangeAlt,
   faTimes,
   faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
@@ -50,7 +50,8 @@ const Sidebar = () => {
         <ul className="space-y-4" style={{ marginTop: "50px" }}> {/* Add margin-top for spacing */}
           <MenuItem icon={faPlus} text="Add an object" />
           <MenuItem icon={faServer} text="Nodes" />
-          <Link to="/traffic-simulation"><MenuItem icon={faNetworkWired} text="Networks" /></Link>
+          <Link to="/traffic-simulation"><MenuItem icon={faExchangeAlt} text="Traffic Simualtion" /></Link>
+          <Link to="/network"><MenuItem icon={faNetworkWired} text="Networks" /></Link>
           <MenuItem icon={faCogs} text="Startup-configs" />
           <MenuItem icon={faObjectGroup} text="Configured objects" />
           <MenuItem icon={faEllipsisH} text="More actions" />
@@ -66,7 +67,6 @@ const Sidebar = () => {
           <MenuItem icon={faInfoCircle} text="Status" />
           <MenuItem icon={faInfo} text="Lab details" />
           <MenuItem icon={faLock} text="Lock Lab" />
-          <MenuItem icon={faMoon} text="Dark Mode" />
           <MenuItem icon={faTimes} text="Close lab" />
           <MenuItem icon={faSignOutAlt} text="Logout" />
         </ul>
