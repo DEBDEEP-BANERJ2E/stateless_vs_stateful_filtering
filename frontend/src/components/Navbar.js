@@ -8,7 +8,7 @@ const Navbar = () => {
   const [isAlgorithmDropdownOpen, setAlgorithmDropdownOpen] = useState(false);
   const [isAttackDropdownOpen, setAttackDropdownOpen] = useState(false);
 
-  const mlAlgorithms = ["Algorithm A", "Algorithm B", "Algorithm C"];
+  const mlAlgorithms = ["SVM", "Random Forest", "XGBoost", "KNN", "LightGBM"];
   const attackTypes = ["SQL Injection", "DNS Server", "DoS", "Man-in-the-Middle"];
 
   // Handle checkbox changes for ML Algorithms

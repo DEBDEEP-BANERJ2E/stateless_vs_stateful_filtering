@@ -51,7 +51,7 @@ export const downloadAllReports = async (tableData, chartIds) => {
   }
 };
 
-const BenchmarkingChart = () => {
+const RandomForest = () => {
   const [chartData, setChartData] = useState({ labels: [], datasets: [] });
   const [tableData, setTableData] = useState([]);
   const [benchmarkingStopped, setBenchmarkingStopped] = useState(false);
@@ -60,7 +60,7 @@ const BenchmarkingChart = () => {
   const timeoutRef = useRef(null);
 
   const fetchData = async () => {
-    const response = await fetch('http://localhost:8005/data');
+    const response = await fetch('http://localhost:8007/data');
     const data = await response.json();
     return data;
   };
@@ -114,7 +114,7 @@ const BenchmarkingChart = () => {
     }
 
     // First stop the previous benchmark if it was running, then start a new one
-    fetch('http://localhost:8005/start')
+    fetch('http://localhost:8007/start')
       .then((response) => response.text())
       .then((message) => {
         console.log(message);
@@ -129,7 +129,7 @@ const BenchmarkingChart = () => {
   }, [updateChartAndTable]);
 
   const stopBenchmark = useCallback(() => {
-    fetch('http://localhost:8005/stop')
+    fetch('http://localhost:8007/stop')
       .then((response) => response.text())
       .then((message) => {
         console.log(message);
@@ -143,7 +143,7 @@ const BenchmarkingChart = () => {
     setBenchmarkingStopped(false);
     setBenchmarkingResumed(true);
 
-    fetch('http://localhost:8005/start')
+    fetch('http://localhost:8007/start')
       .then((response) => response.text())
       .then((message) => {
         console.log(message);
@@ -251,4 +251,4 @@ const BenchmarkingChart = () => {
   );
 };
 
-export default BenchmarkingChart;
+export default RandomForest;

@@ -25,13 +25,16 @@ function Header() {
             <Link to="/traffic-simulation">Traffic Simulation</Link>
           </li>
           <li>
-            <Link to="/network">Network Performance Analysis</Link>
+            <Link to="/reports">Normal Reports</Link>
           </li>
           <li>
-            <Link to="/reports">Reports</Link>
+            <Link to="/reports1">Reports on RF</Link>
           </li>
           <li>
-            <Link to="/benchmarking">Output</Link>
+            <Link to="/benchmarking">Network Performance Analysis</Link>
+          </li>
+          <li>
+            <Link to="/random-forest">NPA with RF</Link>
           </li>
           <li>
             <Link to="/login-register">

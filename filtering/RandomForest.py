@@ -1,12 +1,15 @@
-from flask import Flask, jsonify, request  # Add request for handling input
-from flask_cors import CORS  # Import CORS
+from flask import Flask, jsonify, request
+from flask_cors import CORS
 import threading
 import random
 import time
-import json  # Import json for file handling
+import json
+import numpy as np
+from sklearn.ensemble import RandomForestRegressor  # Importing RandomForest
+from sklearn.preprocessing import StandardScaler  # To scale features for better model performance
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+CORS(app)
 
 class Benchmark:
     def __init__(self):
@@ -19,7 +22,12 @@ class Benchmark:
         self.memory_usage_stateful = []
         self.memory_usage_stateless = []
         self.running = False
-        self.stop_signal = threading.Event()  # Event to handle stopping the process
+        self.stop_signal = threading.Event()
+        self.model = RandomForestRegressor(n_estimators=100, random_state=42)  # Initialize Random Forest model
+        self.scaler = StandardScaler()  # Scaler for feature normalization
+
+        # Fit the model with some initial data
+        self.train_model()
 
     def simulate_packet(self):
         return random.choice(['short', 'long'])
@@ -36,7 +44,10 @@ class Benchmark:
         self.cpu_usage_stateful.append(cpu_usage)
         self.memory_usage_stateful.append(memory_usage)
 
-        throughput = max(0.5, 1 - latency * 5)
+        # Use machine learning model to predict throughput based on CPU usage, memory usage, and latency
+        features = np.array([[latency, cpu_usage, memory_usage]])
+        features_scaled = self.scaler.transform(features)  # Scale features before prediction
+        throughput = self.model.predict(features_scaled)[0]  # Predict throughput
         self.throughput_stateful.append(throughput)
 
     def stateless_filtering(self):
@@ -54,6 +65,22 @@ class Benchmark:
         throughput = max(0.7, 1 - latency * 3)
         self.throughput_stateless.append(throughput)
 
+    def train_model(self):
+        # This is a simple example where we simulate some initial training data
+        # For real applications, you would gather real-world data
+        latency = np.random.uniform(0.01, 0.05, 1000)
+        cpu_usage = np.random.uniform(30, 70, 1000) + latency * 100
+        memory_usage = np.random.uniform(40, 80, 1000) + latency * 50
+        throughput = 1 - (latency * 5)  # Example linear relationship for throughput
+
+        # Feature matrix (latency, cpu_usage, memory_usage)
+        X = np.vstack((latency, cpu_usage, memory_usage)).T
+        y = throughput
+
+        # Scale features for better model performance
+        X_scaled = self.scaler.fit_transform(X)
+        self.model.fit(X_scaled, y)  # Train the model
+
     def get_data(self):
         return {
             "latency_stateful": self.latency_stateful or [],
@@ -68,11 +95,11 @@ class Benchmark:
 
     def start_benchmarking(self):
         self.running = True
-        self.stop_signal.clear()  # Reset stop signal for a new benchmarking round
+        self.stop_signal.clear()
         start_time = time.time()
 
-        while self.running and time.time() - start_time < 60:
-            if self.stop_signal.is_set():  # Check for stop signal
+        while self.running and time.time() - start_time < 61:
+            if self.stop_signal.is_set():
                 break
             self.stateful_filtering()
             self.stateless_filtering()
@@ -80,11 +107,10 @@ class Benchmark:
 
     def stop_benchmarking(self):
         self.running = False
-        self.stop_signal.set()  # Set the stop signal to stop benchmarking
+        self.stop_signal.set()
         self.clear_data()
 
     def clear_data(self):
-        # Clear the data when restarting the benchmarking
         self.latency_stateful.clear()
         self.latency_stateless.clear()
         self.throughput_stateful.clear()
@@ -94,12 +120,11 @@ class Benchmark:
         self.memory_usage_stateful.clear()
         self.memory_usage_stateless.clear()
 
-
 benchmark = Benchmark()
 
 @app.route('/start', methods=['GET'])
 def start_benchmark():
-    benchmark.stop_benchmarking()  # Stop any previous benchmarking
+    benchmark.stop_benchmarking()
     threading.Thread(target=benchmark.start_benchmarking).start()
     return "Benchmarking started."
 
@@ -123,6 +148,5 @@ def save_data():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=8005)
+    app.run(debug=True, host='0.0.0.0', port=8007)

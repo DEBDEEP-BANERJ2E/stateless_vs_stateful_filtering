@@ -17,14 +17,21 @@ import {
   faExchangeAlt,
   faTimes,
   faSignOutAlt,
+  faChevronDown,
+  faChevronUp,
 } from "@fortawesome/free-solid-svg-icons";
 import "../styles/sidebar.css";
 
-const Sidebar = () => {
+const Sidebar = ({ setTrafficSourceVisible }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isNodesDropdownOpen, setNodesDropdownOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const toggleNodesDropdown = () => {
+    setNodesDropdownOpen(!isNodesDropdownOpen);
   };
 
   return (
@@ -47,36 +54,65 @@ const Sidebar = () => {
 
         {/* Menu Items */}
         {isSidebarOpen && (
-        <ul className="space-y-4" style={{ marginTop: "50px" }}> {/* Add margin-top for spacing */}
-          <MenuItem icon={faPlus} text="Add an object" />
-          <MenuItem icon={faServer} text="Nodes" />
-          <Link to="/traffic-simulation"><MenuItem icon={faExchangeAlt} text="Traffic Simualtion" /></Link>
-          <Link to="/network"><MenuItem icon={faNetworkWired} text="Networks" /></Link>
-          <MenuItem icon={faCogs} text="Startup-configs" />
-          <MenuItem icon={faObjectGroup} text="Configured objects" />
-          <MenuItem icon={faEllipsisH} text="More actions" />
-          <MenuItem icon={faSyncAlt} text="Refresh topology" />
-          <li className="flex items-center space-x-2 cursor-pointer hover:bg-gray-700 p-2 rounded">
-            <FontAwesomeIcon icon={faSearch} />
-            <span>Zoom</span>
-            <input
-              type="range"
-              className="ml-2 w-full h-2 rounded bg-gray-700"
-            />
-          </li>
-          <MenuItem icon={faInfoCircle} text="Status" />
-          <MenuItem icon={faInfo} text="Lab details" />
-          <MenuItem icon={faLock} text="Lock Lab" />
-          <MenuItem icon={faTimes} text="Close lab" />
-          <MenuItem icon={faSignOutAlt} text="Logout" />
-        </ul>
-      )}
-      </aside>
+          <ul className="space-y-4" style={{ marginTop: "50px" }}>
+            <MenuItem icon={faPlus} text="Add an object" />
 
-      {/* Main Content */}
-      <main className="flex-1 bg-gray-100 grid grid-cols-1 gap-4 p-4">
-        {/* Main content */}
-      </main>
+            {/* Nodes Dropdown */}
+            <li
+              className="flex items-center justify-between cursor-pointer hover:bg-gray-700 p-2 rounded"
+              onClick={toggleNodesDropdown}
+            >
+              <div className="flex items-center space-x-2">
+                <FontAwesomeIcon icon={faServer} />
+                <span>Nodes</span>
+              </div>
+              <FontAwesomeIcon icon={isNodesDropdownOpen ? faChevronUp : faChevronDown} />
+            </li>
+            {isNodesDropdownOpen && (
+              <ul className="pl-8 space-y-2">
+                <DropdownItem
+                  text={
+                    <span
+                      style={{ marginLeft: "2em" }}
+                      onClick={() => setTrafficSourceVisible(true)} // Set visibility to true on click
+                    >
+                      Traffic Source
+                    </span>
+                  }
+                />
+                <DropdownItem text={<span style={{ marginLeft: "2em" }}>Capture Packets</span>} />
+                <DropdownItem text={<span style={{ marginLeft: "2em" }}>Packet Filtering</span>} />
+                <DropdownItem text={<span style={{ marginLeft: "2em" }}>Processing Analysis</span>} />
+                <DropdownItem text={<span style={{ marginLeft: "2em" }}>Results Output</span>} />
+              </ul>
+            )}
+
+            <Link to="/traffic-simulation">
+              <MenuItem icon={faExchangeAlt} text="Traffic Simulation" />
+            </Link>
+            <Link to="/network">
+              <MenuItem icon={faNetworkWired} text="Networks" />
+            </Link>
+            <MenuItem icon={faCogs} text="Startup-configs" />
+            <MenuItem icon={faObjectGroup} text="Configured objects" />
+            <MenuItem icon={faEllipsisH} text="More actions" />
+            <MenuItem icon={faSyncAlt} text="Refresh topology" />
+            <li className="flex items-center space-x-2 cursor-pointer hover:bg-gray-700 p-2 rounded">
+              <FontAwesomeIcon icon={faSearch} />
+              <span>Zoom</span>
+              <input
+                type="range"
+                className="ml-2 w-full h-2 rounded bg-gray-700"
+              />
+            </li>
+            <MenuItem icon={faInfoCircle} text="Status" />
+            <MenuItem icon={faInfo} text="Lab details" />
+            <MenuItem icon={faLock} text="Lock Lab" />
+            <MenuItem icon={faTimes} text="Close lab" />
+            <MenuItem icon={faSignOutAlt} text="Logout" />
+          </ul>
+        )}
+      </aside>
     </div>
   );
 };
@@ -84,6 +120,12 @@ const Sidebar = () => {
 const MenuItem = ({ icon, text }) => (
   <li className="flex items-center space-x-2 cursor-pointer hover:bg-gray-700 p-2 rounded">
     <FontAwesomeIcon icon={icon} />
+    <span>{text}</span>
+  </li>
+);
+
+const DropdownItem = ({ text }) => (
+  <li className="flex items-center space-x-2 cursor-pointer hover:bg-gray-600 p-2 rounded text-gray-300">
     <span>{text}</span>
   </li>
 );

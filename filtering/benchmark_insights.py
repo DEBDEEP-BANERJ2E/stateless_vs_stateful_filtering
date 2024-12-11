@@ -59,45 +59,79 @@ def load_and_calculate():
     }
 
 # Inference Functions based on percentage differences
+
 def latency_inference(latency_diff):
-    if latency_diff > 20:
+    if latency_diff > 30:
+        return "Stateful filtering method shows extremely high latency compared to stateless, which can severely impact performance and user experience."
+    elif latency_diff > 20:
         return "Stateful filtering method shows significantly higher latency compared to stateless, which may impact performance."
+    elif latency_diff > 10:
+        return "Stateful filtering method shows moderately higher latency compared to stateless, which might cause noticeable delays in processing."
     elif latency_diff > 0:
         return "Stateful filtering method shows slightly higher latency compared to stateless, which might cause minor delays."
-    elif latency_diff < -20:
-        return "Stateful filtering method performs significantly better in terms of latency, making it faster than stateless."
+    elif latency_diff > -10:
+        return "Latency difference between stateful and stateless filtering is minimal and likely has negligible performance impact."
+    elif latency_diff > -20:
+        return "Stateful filtering method performs moderately better in terms of latency, making it noticeably faster than stateless."
+    elif latency_diff > -30:
+        return "Stateful filtering method performs significantly better in terms of latency, making it much faster than stateless."
     else:
-        return "Latency difference between stateful and stateless filtering is negligible."
+        return "Stateful filtering method shows extremely low latency compared to stateless, indicating exceptional performance."
 
 def throughput_inference(throughput_diff):
-    if throughput_diff > 20:
+    if throughput_diff > 30:
+        return "Stateless filtering method shows extremely high throughput compared to stateful, indicating superior data processing capacity."
+    elif throughput_diff > 20:
         return "Stateless filtering method shows significantly higher throughput compared to stateful, indicating better data processing capacity."
+    elif throughput_diff > 10:
+        return "Stateless filtering method shows moderately higher throughput compared to stateful, leading to noticeably faster data processing."
     elif throughput_diff > 0:
         return "Stateless filtering method performs slightly better in throughput, which could lead to marginally faster data processing."
-    elif throughput_diff < -20:
-        return "Stateful filtering method demonstrates better throughput, suggesting a more efficient processing of data."
+    elif throughput_diff > -10:
+        return "Throughput difference between stateful and stateless filtering is minimal and unlikely to affect performance."
+    elif throughput_diff > -20:
+        return "Stateful filtering method demonstrates moderately better throughput, suggesting more efficient processing of data."
+    elif throughput_diff > -30:
+        return "Stateful filtering method demonstrates significantly better throughput, indicating superior efficiency in processing data."
     else:
-        return "Throughput difference between stateful and stateless filtering is negligible."
+        return "Stateful filtering method shows extremely high throughput compared to stateless, making it far more efficient."
 
 def cpu_inference(cpu_diff):
-    if cpu_diff > 20:
+    if cpu_diff > 30:
+        return "Stateful filtering method shows extremely high CPU usage compared to stateless, which can lead to severe resource inefficiency and potential system strain."
+    elif cpu_diff > 20:
         return "Stateful filtering method shows significantly higher CPU usage, which may lead to increased resource consumption and lower efficiency."
+    elif cpu_diff > 10:
+        return "Stateful filtering method shows moderately higher CPU usage, which might cause noticeable inefficiencies."
     elif cpu_diff > 0:
         return "Stateful filtering method shows slightly higher CPU usage, which might cause minor inefficiencies."
-    elif cpu_diff < -20:
-        return "Stateful filtering method uses significantly less CPU, indicating better resource efficiency compared to stateless."
+    elif cpu_diff > -10:
+        return "CPU usage difference between stateful and stateless filtering is minimal and likely inconsequential."
+    elif cpu_diff > -20:
+        return "Stateful filtering method uses moderately less CPU, indicating noticeably better resource efficiency compared to stateless."
+    elif cpu_diff > -30:
+        return "Stateful filtering method uses significantly less CPU, suggesting high resource efficiency."
     else:
-        return "CPU usage difference between stateful and stateless filtering is negligible."
+        return "Stateful filtering method uses extremely low CPU compared to stateless, indicating outstanding resource efficiency."
 
 def memory_inference(memory_diff):
-    if memory_diff > 20:
+    if memory_diff > 30:
+        return "Stateful filtering method shows extremely high memory usage compared to stateless, which might cause severe memory-related performance issues."
+    elif memory_diff > 20:
         return "Stateful filtering method shows significantly higher memory usage, which might cause memory-related performance issues."
+    elif memory_diff > 10:
+        return "Stateful filtering method uses moderately more memory, which could lead to noticeable inefficiencies."
     elif memory_diff > 0:
-        return "Stateful filtering method uses slightly more memory, which could lead to moderate inefficiencies."
-    elif memory_diff < -20:
-        return "Stateful filtering method uses less memory, making it more memory-efficient compared to stateless."
+        return "Stateful filtering method uses slightly more memory, which could lead to minor inefficiencies."
+    elif memory_diff > -10:
+        return "Memory usage difference between stateful and stateless filtering is minimal and unlikely to affect performance."
+    elif memory_diff > -20:
+        return "Stateful filtering method uses moderately less memory, making it noticeably more memory-efficient compared to stateless."
+    elif memory_diff > -30:
+        return "Stateful filtering method uses significantly less memory, suggesting high memory efficiency."
     else:
-        return "Memory usage difference between stateful and stateless filtering is negligible."
+        return "Stateful filtering method uses extremely low memory compared to stateless, indicating exceptional memory efficiency."
+
 
 # File monitoring thread that watches for changes to the JSON file
 def monitor_file_changes():
