@@ -2,8 +2,54 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import BenchmarkingChartTable from '../components/BenchmarkingChartTable'; // Data Table component
 import BenchmarkingChartCanvas from '../components/BenchmarkingChartCanvas'; // Chart component
+//import Reports from './Reports'; // Reports component
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+
+export const downloadAllReports = async (tableData, chartIds) => {
+  if (!tableData || tableData.length === 0) {
+    console.error('Table data is empty or undefined.');
+    return; // Exit early if no data
+  }
+
+  // CSV generation logic
+  const csvContent = [
+    ['Time Interval (s)', 'Latency (Stateful)', 'Latency (Stateless)', 'Throughput (Stateful)', 'Throughput (Stateless)', 'CPU Usage (Stateful)', 'CPU Usage (Stateless)', 'Memory Usage (Stateful)', 'Memory Usage (Stateless)'],
+    ...tableData.map((row, index) => [
+      index + 1,
+      row.latency_stateful,
+      row.latency_stateless,
+      row.throughput_stateful,
+      row.throughput_stateless,
+      row.cpu_usage_stateful,
+      row.cpu_usage_stateless,
+      row.memory_usage_stateful,
+      row.memory_usage_stateless
+    ])
+  ]
+    .map((e) => e.join(','))
+    .join('\n');
+
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'benchmark_data.csv';
+  link.click();
+
+  // Download Chart Data for each chart
+  for (const chartId of chartIds) {
+    const chartCanvas = document.getElementById(chartId);
+    if (chartCanvas) {
+      const url = chartCanvas.toDataURL('image/png');
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${chartId}_chart.png`;
+      link.click();
+    } else {
+      console.error(`Canvas for ${chartId} not found`);
+    }
+  }
+};
 
 const BenchmarkingChart = () => {
   const [chartData, setChartData] = useState({ labels: [], datasets: [] });
@@ -28,14 +74,14 @@ const BenchmarkingChart = () => {
     const updatedData = {
       labels: Array.from({ length: data.latency_stateful.length }, (_, i) => i),  // Start from 0
       datasets: [
-        { label: 'Latency (Stateful)', data: data.latency_stateful, borderColor: 'blue', fill: false },
-        { label: 'Latency (Stateless)', data: data.latency_stateless, borderColor: 'orange', fill: false },
-        { label: 'Throughput (Stateful)', data: data.throughput_stateful, borderColor: 'green', fill: false },
-        { label: 'Throughput (Stateless)', data: data.throughput_stateless, borderColor: 'red', fill: false },
-        { label: 'CPU Usage (Stateful)', data: data.cpu_usage_stateful, borderColor: 'purple', fill: false },
-        { label: 'CPU Usage (Stateless)', data: data.cpu_usage_stateless, borderColor: 'cyan', fill: false },
-        { label: 'Memory Usage (Stateful)', data: data.memory_usage_stateful, borderColor: 'brown', fill: false },
-        { label: 'Memory Usage (Stateless)', data: data.memory_usage_stateless, borderColor: 'pink', fill: false }
+        { label: 'Latency (Stateful)', data: data.latency_stateful || [], borderColor: 'blue', fill: false },
+        { label: 'Latency (Stateless)', data: data.latency_stateless || [], borderColor: 'orange', fill: false },
+        { label: 'Throughput (Stateful)', data: data.throughput_stateful || [], borderColor: 'green', fill: false },
+        { label: 'Throughput (Stateless)', data: data.throughput_stateless || [], borderColor: 'red', fill: false },
+        { label: 'CPU Usage (Stateful)', data: data.cpu_usage_stateful || [], borderColor: 'purple', fill: false },
+        { label: 'CPU Usage (Stateless)', data: data.cpu_usage_stateless || [], borderColor: 'cyan', fill: false },
+        { label: 'Memory Usage (Stateful)', data: data.memory_usage_stateful || [], borderColor: 'brown', fill: false },
+        { label: 'Memory Usage (Stateless)', data: data.memory_usage_stateless || [], borderColor: 'pink', fill: false }
       ]
     };
 

@@ -1,0 +1,40 @@
+.reports {
+    padding: 20px;
+  }
+  
+  .filter-options {
+    margin-bottom: 20px;
+  }
+  
+  .charts {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+  
+  .table {
+    margin-bottom: 30px;
+  }
+  
+  .insights {
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  table th {
+    background-color: #f2f2f2;
+  }
+  

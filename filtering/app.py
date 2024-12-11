@@ -1,8 +1,9 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request  # Add request for handling input
 from flask_cors import CORS  # Import CORS
 import threading
 import random
 import time
+import json  # Import json for file handling
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
@@ -55,14 +56,14 @@ class Benchmark:
 
     def get_data(self):
         return {
-            "latency_stateful": self.latency_stateful,
-            "latency_stateless": self.latency_stateless,
-            "throughput_stateful": self.throughput_stateful,
-            "throughput_stateless": self.throughput_stateless,
-            "cpu_usage_stateful": self.cpu_usage_stateful,
-            "cpu_usage_stateless": self.cpu_usage_stateless,
-            "memory_usage_stateful": self.memory_usage_stateful,
-            "memory_usage_stateless": self.memory_usage_stateless
+            "latency_stateful": self.latency_stateful or [],
+            "latency_stateless": self.latency_stateless or [],
+            "throughput_stateful": self.throughput_stateful or [],
+            "throughput_stateless": self.throughput_stateless or [],
+            "cpu_usage_stateful": self.cpu_usage_stateful or [],
+            "cpu_usage_stateless": self.cpu_usage_stateless or [],
+            "memory_usage_stateful": self.memory_usage_stateful or [],
+            "memory_usage_stateless": self.memory_usage_stateless or []
         }
 
     def start_benchmarking(self):
@@ -93,6 +94,7 @@ class Benchmark:
         self.memory_usage_stateful.clear()
         self.memory_usage_stateless.clear()
 
+
 benchmark = Benchmark()
 
 @app.route('/start', methods=['GET'])
@@ -109,6 +111,18 @@ def stop_benchmark():
 @app.route('/data', methods=['GET'])
 def get_data():
     return jsonify(benchmark.get_data())
+
+@app.route('/save', methods=['POST'])
+def save_data():
+    file_name = request.json.get('file_name', 'benchmark_data.json')
+    try:
+        data = benchmark.get_data()
+        with open(file_name, 'w') as file:
+            json.dump(data, file, indent=4)
+        return jsonify({"message": f"Data saved to {file_name}."}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=8005)

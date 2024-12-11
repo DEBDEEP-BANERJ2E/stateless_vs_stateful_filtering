@@ -2,7 +2,7 @@ import React from 'react';
 
 const BenchmarkingChartTable = ({ tableData }) => {
   return (
-    <table className="data-table">
+    <table className="data-table" style={{ marginLeft: '20px'}}>
       <thead>
         <tr>
           <th>Time Interval (s)</th>
