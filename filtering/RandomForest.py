@@ -49,6 +49,7 @@ class Benchmark:
         features_scaled = self.scaler.transform(features)  # Scale features before prediction
         throughput = self.model.predict(features_scaled)[0]  # Predict throughput
         self.throughput_stateful.append(throughput)
+        #print(self)
 
     def stateless_filtering(self):
         latency = random.uniform(0.01, 0.03)

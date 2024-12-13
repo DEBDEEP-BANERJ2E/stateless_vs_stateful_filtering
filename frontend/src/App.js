@@ -9,6 +9,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import LoginRegister from "./pages/LoginRegister"; // Import the LoginRegister page
 import Input from "./pages/Input";
+import Home from "./pages/Home";
 import LabDashboard from "./pages/LabDashboard";
 import LandingPage from "./pages/LandingPage";
 import LabProjects from "./pages/LabProjects";
@@ -20,7 +21,7 @@ function App() {
   const location = useLocation(); // Get the current route
 
   // List of routes where we don't want the Header to show
-  const hideHeaderRoutes = ["/landing", "/login-register"];
+  const hideHeaderRoutes = ["/landing", "/login-register", "/home"];
 
   return (
     <div className="App">
@@ -29,6 +30,7 @@ function App() {
       
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/network" element={<NetworkAnalysis />} />
         <Route path="/traffic-simulation" element={<TrafficSimulation />} />
         <Route path="/reports" element={<Reports />} />

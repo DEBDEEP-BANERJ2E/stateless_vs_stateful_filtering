@@ -8,7 +8,6 @@ import {
   faNetworkWired,
   faCogs,
   faObjectGroup,
-  faEllipsisH,
   faSyncAlt,
   faSearch,
   faInfoCircle,
@@ -19,12 +18,22 @@ import {
   faSignOutAlt,
   faChevronDown,
   faChevronUp,
+  faToolbox,
 } from "@fortawesome/free-solid-svg-icons";
 import "../styles/sidebar.css";
 
-const Sidebar = ({ setTrafficSourceVisible }) => {
+const Sidebar = ({ 
+  setTrafficSourceVisible, 
+  setCapturePacketsVisible, 
+  setPacketFilteringVisible, 
+  setProcessingAnalysisVisible, 
+  setResultsOutputVisible,
+  setPenMode,
+  setEraserMode
+}) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isNodesDropdownOpen, setNodesDropdownOpen] = useState(false);
+  const [isToolboxDropdownOpen, setToolboxDropdownOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -32,6 +41,20 @@ const Sidebar = ({ setTrafficSourceVisible }) => {
 
   const toggleNodesDropdown = () => {
     setNodesDropdownOpen(!isNodesDropdownOpen);
+  };
+
+  const toggleToolboxDropdown = () => {
+    setToolboxDropdownOpen(!isToolboxDropdownOpen);
+  };
+
+  const handlePenClick = () => {
+    setPenMode(true);
+    setEraserMode(false); // Ensure Eraser mode is turned off when Pen is activated
+  };
+
+  const handleEraserClick = () => {
+    setEraserMode(true);
+    setPenMode(false); // Ensure Pen mode is turned off when Eraser is activated
   };
 
   return (
@@ -74,16 +97,88 @@ const Sidebar = ({ setTrafficSourceVisible }) => {
                   text={
                     <span
                       style={{ marginLeft: "2em" }}
-                      onClick={() => setTrafficSourceVisible(true)} // Set visibility to true on click
+                      onClick={() => setTrafficSourceVisible()}
                     >
                       Traffic Source
                     </span>
                   }
                 />
-                <DropdownItem text={<span style={{ marginLeft: "2em" }}>Capture Packets</span>} />
-                <DropdownItem text={<span style={{ marginLeft: "2em" }}>Packet Filtering</span>} />
-                <DropdownItem text={<span style={{ marginLeft: "2em" }}>Processing Analysis</span>} />
-                <DropdownItem text={<span style={{ marginLeft: "2em" }}>Results Output</span>} />
+                <DropdownItem
+                  text={
+                    <span
+                      style={{ marginLeft: "2em" }}
+                      onClick={() => setCapturePacketsVisible()}
+                    >
+                      Capture Packets
+                    </span>
+                  }
+                />
+                <DropdownItem
+                  text={
+                    <span
+                      style={{ marginLeft: "2em" }}
+                      onClick={() => setPacketFilteringVisible()}
+                    >
+                      Packet Filtering
+                    </span>
+                  }
+                />
+                <DropdownItem
+                  text={
+                    <span
+                      style={{ marginLeft: "2em" }}
+                      onClick={() => setProcessingAnalysisVisible()}
+                    >
+                      Processing Analysis
+                    </span>
+                  }
+                />
+                <DropdownItem
+                  text={
+                    <span
+                      style={{ marginLeft: "2em" }}
+                      onClick={() => setResultsOutputVisible()}
+                    >
+                      Results Output
+                    </span>
+                  }
+                />
+              </ul>
+            )}
+
+            {/* Toolbox Dropdown */}
+            <li
+              className="flex items-center justify-between cursor-pointer hover:bg-gray-700 p-2 rounded"
+              onClick={toggleToolboxDropdown}
+            >
+              <div className="flex items-center space-x-2">
+                <FontAwesomeIcon icon={faToolbox} />
+                <span>Toolbox</span>
+              </div>
+              <FontAwesomeIcon icon={isToolboxDropdownOpen ? faChevronUp : faChevronDown} />
+            </li>
+            {isToolboxDropdownOpen && (
+              <ul className="pl-8 space-y-2">
+                <DropdownItem
+                  text={
+                    <span
+                      style={{ marginLeft: "2em" }}
+                      onClick={handlePenClick}
+                    >
+                      Pen
+                    </span>
+                  }
+                />
+                <DropdownItem
+                  text={
+                    <span
+                      style={{ marginLeft: "2em" }}
+                      onClick={handleEraserClick}
+                    >
+                      Eraser
+                    </span>
+                  }
+                />
               </ul>
             )}
 
@@ -95,7 +190,6 @@ const Sidebar = ({ setTrafficSourceVisible }) => {
             </Link>
             <MenuItem icon={faCogs} text="Startup-configs" />
             <MenuItem icon={faObjectGroup} text="Configured objects" />
-            <MenuItem icon={faEllipsisH} text="More actions" />
             <MenuItem icon={faSyncAlt} text="Refresh topology" />
             <li className="flex items-center space-x-2 cursor-pointer hover:bg-gray-700 p-2 rounded">
               <FontAwesomeIcon icon={faSearch} />
@@ -125,8 +219,8 @@ const MenuItem = ({ icon, text }) => (
 );
 
 const DropdownItem = ({ text }) => (
-  <li className="flex items-center space-x-2 cursor-pointer hover:bg-gray-600 p-2 rounded text-gray-300">
-    <span>{text}</span>
+  <li className="flex items-center space-x-2 cursor-pointer hover:bg-gray-700 p-2 rounded">
+    {text}
   </li>
 );
 

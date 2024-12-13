@@ -15,6 +15,7 @@ const Input = () => {
     latency: false,
     packetLoss: false,
     bandwidthLimit: 1000,
+    labName: '' // New field for Lab Name
   });
 
   // Handle form input changes
@@ -39,6 +40,18 @@ const Input = () => {
         <form onSubmit={handleSubmit}>
           {/* Traffic Type */}
           <div className="form-group">
+            {/* Lab Name */}
+          <div className="form-group">
+            <label htmlFor="labName">Lab Name</label>
+            <input
+              type="text"
+              id="labName"
+              name="labName"
+              value={inputs.labName}
+              onChange={handleInputChange}
+            />
+          </div>
+          <br></br>
             <label htmlFor="trafficType">Traffic Type</label>
             <select
               id="trafficType"
@@ -213,13 +226,14 @@ const Input = () => {
             />
           </div>
 
+
           {/* "Create a Lab" button now wrapped with Link */}
           <div className="button-container">
-          <Link to="/lab-projects">
-            <button type="button" className="submit-button">
-              Create a Lab
-            </button>
-          </Link>
+            <Link to="/lab-projects">
+              <button type="button" className="submit-button">
+                Create a Lab
+              </button>
+            </Link>
           </div>
         </form>
       </div>
