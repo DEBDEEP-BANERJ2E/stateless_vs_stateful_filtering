@@ -7,8 +7,8 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [isError, setIsError] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
-  // Handle username and password change
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
   };
@@ -17,7 +17,10 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  // Handle form submission
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -30,29 +33,24 @@ const Login = () => {
     console.log('Logging in with:', { username, password });
 
     try {
-      // Send a POST request to the backend API
       const response = await axios.post('http://localhost:5001/api/auth/login', {
         username,
-        password
+        password,
       });
 
       if (response.status === 200) {
         setMessage('Login successful!');
         setIsError(false);
-        // Optionally redirect the user to another page after successful login
-        window.location.href = '/input'; // Replace with your desired route
+        window.location.href = '/input';
       } else {
         setMessage('Login failed. Please check your credentials.');
         setIsError(true);
       }
     } catch (error) {
-      // Network error or wrong API endpoint handling
       console.error('Error logging in:', error);
       if (error.response) {
-        // Backend returned an error
         setMessage(error.response.data.message || 'Login failed. Please check your credentials.');
       } else {
-        // Network error
         setMessage('Network error. Please try again later.');
       }
       setIsError(true);
@@ -77,13 +75,21 @@ const Login = () => {
 
         <div>
           <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={handlePasswordChange}
-            required
-          />
+          <div className="password-container">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              id="password"
+              value={password}
+              onChange={handlePasswordChange}
+              required
+            />
+            <span
+              className="eye-icon"
+              onClick={togglePasswordVisibility}
+            >
+              {showPassword ? '👁️' : '👁️‍🗨️'}
+            </span>
+          </div>
         </div>
 
         <button type="submit">Login</button>
