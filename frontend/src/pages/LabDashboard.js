@@ -12,25 +12,27 @@ function LabDashboard() {
   const [packetFiltering, setPacketFiltering] = useState([]);
   const [processingAnalysis, setProcessingAnalysis] = useState([]);
   const [resultsOutput, setResultsOutput] = useState([]);
+  
+  // State for input visibility and value for each icon
+  const [activeInput, setActiveInput] = useState(null);
+  const [inputValue, setInputValue] = useState("");
 
   // Reference for dragging state and canvas
   const canvasRef = useRef(null);
   const draggingRef = useRef(false);
 
-  // UseCallback for clearCanvasAndRedraw to avoid recreating it on each render
   const clearCanvasAndRedraw = useCallback((canvas) => {
     const ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawGrid(ctx);
-  }, []); // empty array ensures it only creates the function once
+  }, []); 
 
-  // Draw grid on canvas
-  const drawGrid = (ctx, gridSize = 50) => {
+  const drawGrid = (ctx, gridSize = 20) => { // Reduced the grid size from 50 to 20
     const width = ctx.canvas.width;
     const height = ctx.canvas.height;
 
-    ctx.strokeStyle = "#ccc";
-    ctx.lineWidth = 0.5;
+    ctx.strokeStyle = "#ccc"; // Light gray color for grid
+    ctx.lineWidth = 0.5; // Fine line width for grid
 
     for (let x = gridSize; x < width; x += gridSize) {
       ctx.beginPath();
@@ -47,7 +49,6 @@ function LabDashboard() {
     }
   };
 
-  // UseCallback for handleMouseMove to avoid recreating it on each render
   const handleMouseMove = useCallback((e, iconId, category, setCategory) => {
     if (!draggingRef.current) return;
 
@@ -99,44 +100,57 @@ function LabDashboard() {
     }
 
     clearCanvasAndRedraw(canvas);
-  }, [clearCanvasAndRedraw]); // Include clearCanvasAndRedraw as a dependency
+  }, [clearCanvasAndRedraw]); 
 
-  // Handle mouse down (begin drag)
   const handleMouseDown = () => {
     draggingRef.current = true;
   };
 
-  // Handle mouse up (end drag)
   const handleMouseUp = () => {
     draggingRef.current = false;
   };
 
-  // Resize canvas on window resize
-  useEffect(() => {
-    const canvas = canvasRef.current;
+  const handleInputChange = (e) => setInputValue(e.target.value);
 
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth - 500;
-      canvas.height = window.innerHeight - 10;
-      clearCanvasAndRedraw(canvas);
-    };
-
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
-
-    return () => window.removeEventListener("resize", resizeCanvas);
-  }, [clearCanvasAndRedraw]); // Added clearCanvasAndRedraw to the dependency array
-
-  // Add new icon to the specific category
-  const addIcon = (categorySetter) => {
-    const newId = Date.now();
-    categorySetter((prevIcons) => [
-      ...prevIcons,
-      { id: newId, position: { x: window.innerWidth / 2 - 25, y: window.innerHeight / 2 - 25 } },
-    ]);
+  const handleInputSubmit = (e, iconId, category, setCategory) => {
+    if (e.key === "Enter") {
+      // Update the category array with the new input value
+      if (category === "trafficSources") {
+        setTrafficSources((prevIcons) =>
+          prevIcons.map((icon) =>
+            icon.id === iconId ? { ...icon, data: inputValue } : icon
+          )
+        );
+      } else if (category === "capturePackets") {
+        setCapturePackets((prevIcons) =>
+          prevIcons.map((icon) =>
+            icon.id === iconId ? { ...icon, data: inputValue } : icon
+          )
+        );
+      } else if (category === "packetFiltering") {
+        setPacketFiltering((prevIcons) =>
+          prevIcons.map((icon) =>
+            icon.id === iconId ? { ...icon, data: inputValue } : icon
+          )
+        );
+      } else if (category === "processingAnalysis") {
+        setProcessingAnalysis((prevIcons) =>
+          prevIcons.map((icon) =>
+            icon.id === iconId ? { ...icon, data: inputValue } : icon
+          )
+        );
+      } else if (category === "resultsOutput") {
+        setResultsOutput((prevIcons) =>
+          prevIcons.map((icon) =>
+            icon.id === iconId ? { ...icon, data: inputValue } : icon
+          )
+        );
+      }
+      setActiveInput(null); // Hide the input after submission
+      setInputValue(""); // Clear the input field
+    }
   };
 
-  // Render individual icon with different colors
   const renderIcon = (iconId, position, category, setCategory, icon, color) => (
     <div
       key={iconId}
@@ -151,19 +165,45 @@ function LabDashboard() {
       onMouseMove={(e) => handleMouseMove(e, iconId, category, setCategory)}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
+      onClick={() => {
+        setActiveInput(iconId); // Show input for this icon
+      }}
     >
       <FontAwesomeIcon icon={icon} size="3x" style={{ color: color }} />
+      {activeInput === iconId && (
+        <input
+          type="text"
+          value={inputValue}
+          onChange={handleInputChange}
+          onKeyDown={(e) => handleInputSubmit(e, iconId, category, setCategory)}
+          style={{
+            position: "absolute",
+            top: "-30px", // Position above the icon
+            left: "0",
+            backgroundColor: "yellow",
+            border: "1px solid black",
+            padding: "5px",
+            width: "100px",
+          }}
+        />
+      )}
     </div>
   );
 
-  // Sidebar click handlers to add icons
+  const addIcon = (categorySetter) => {
+    const newId = Date.now();
+    categorySetter((prevIcons) => [
+      ...prevIcons,
+      { id: newId, position: { x: window.innerWidth / 2 - 25, y: window.innerHeight / 2 - 25 } },
+    ]);
+  };
+
   const addTrafficSource = () => addIcon(setTrafficSources);
   const addCapturePacket = () => addIcon(setCapturePackets);
   const addPacketFiltering = () => addIcon(setPacketFiltering);
   const addProcessingAnalysis = () => addIcon(setProcessingAnalysis);
   const addResultsOutput = () => addIcon(setResultsOutput);
 
-  // Handle global mousemove and mouseup
   useEffect(() => {
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseup", handleMouseUp);
@@ -172,7 +212,15 @@ function LabDashboard() {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseup", handleMouseUp);
     };
-  }, [handleMouseMove]); // Added handleMouseMove to the dependency array
+  }, [handleMouseMove]);
+
+  // Set canvas size on load
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    clearCanvasAndRedraw(canvas);
+  }, [clearCanvasAndRedraw]);
 
   return (
     <div className="LabDashboard">

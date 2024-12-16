@@ -1,69 +1,107 @@
 /* BenchmarkingChart.module.css */
 .container {
-    text-align: center;
-    padding: 20px;
-  }
-  
-  .button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    margin-bottom: 20px;
-  }
-  
-  .button:hover {
-    background-color: #45a049;
-  }
-  
+  text-align: center;
+  padding: 20px;
+}
+
+.button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.button:hover {
+  background-color: #45a049;
+}
+
+.chart-container {
+  width: 80%;
+  margin: 0 auto;
+  position: relative; /* Add position relative to the container */
+}
+
+h1 {
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+h2 {
+  font-family: Arial, sans-serif;
+  color: #555;
+  margin-top: 30px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.icon-input {
+  position: absolute;
+  top: -20px; /* Adjust the top position above the canvas */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: yellow;
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 300px;
+  height: 50px; /* Adjust the height of the input */
+  z-index: 10;
+}
+
+@media screen and (max-width: 768px) {
   .chart-container {
-    width: 80%;
-    margin: 0 auto;
+    width: 95%;
   }
-  
-  h1 {
-    font-family: Arial, sans-serif;
-    color: #333;
+
+  .icon-input {
+    width: 200px; /* Adjust input width for smaller screens */
   }
-  
-  h2 {
-    font-family: Arial, sans-serif;
-    color: #555;
-    margin-top: 30px;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  table, th, td {
-    border: 1px solid #ddd;
-  }
-  
-  th, td {
-    padding: 8px;
-    text-align: center;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-  }
-  
-  tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  tbody tr:hover {
-    background-color: #f1f1f1;
-  }
-  
-  @media screen and (max-width: 768px) {
-    .chart-container {
-      width: 95%;
-    }
-  }
-  
+}
+
+.dialog-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.icon-container .icon {
+  cursor: pointer;
+  margin: 10px;
+}
+
+.icon-container .icon:hover {
+  color: blue;
+}
