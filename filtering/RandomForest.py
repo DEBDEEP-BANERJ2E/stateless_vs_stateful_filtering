@@ -78,6 +78,15 @@ class Benchmark:
         X = np.vstack((latency, cpu_usage, memory_usage)).T
         y = throughput
 
+        # Save the datasets as test.json and train.json
+        train_data = {"features": X[:800].tolist(), "labels": y[:800].tolist()}
+        test_data = {"features": X[800:].tolist(), "labels": y[800:].tolist()}
+
+        with open("train.json", "w") as train_file:
+            json.dump(train_data, train_file, indent=4)
+        with open("test.json", "w") as test_file:
+            json.dump(test_data, test_file, indent=4)
+
         # Scale features for better model performance
         X_scaled = self.scaler.fit_transform(X)
         self.model.fit(X_scaled, y)  # Train the model

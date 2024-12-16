@@ -71,7 +71,7 @@ class Benchmark:
         self.stop_signal.clear()  # Reset stop signal for a new benchmarking round
         start_time = time.time()
 
-        while self.running and time.time() - start_time < 60:
+        while self.running and time.time() - start_time < 61:
             if self.stop_signal.is_set():  # Check for stop signal
                 break
             self.stateful_filtering()
