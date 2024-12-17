@@ -1,0 +1,5 @@
+Stateful vs Stateless Filtering Performance Report
+Latency: 10.50 ms
+Throughput: 5000.00 packets/second
+CPU Usage: 25.30%
+Memory Usage: 40.20%
