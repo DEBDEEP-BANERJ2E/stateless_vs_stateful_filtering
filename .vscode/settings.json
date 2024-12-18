@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "*.dbclient-js": "javascript",
+        "traffic_generator.h": "c",
+        "latency_measurement.h": "c",
+        "report_generator.h": "c",
+        "resource_monitor.h": "c",
+        "throughput_measurement.h": "c",
+        "data_analysis.h": "c"
+    }
+}

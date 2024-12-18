@@ -1,0 +1,8 @@
+<pdml version="1.0">
+    <packet>
+        <proto name="udp" />
+    </packet>
+    <packet>
+        <proto name="tcp" />
+    </packet>
+</pdml>

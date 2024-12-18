@@ -1,0 +1,19 @@
+Connecting to host 127.0.0.1, port 80
+[  5] local 127.0.0.1 port 53241 connected to 127.0.0.1 port 80
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-1.00   sec  12.0 GBytes  102178 Mbits/sec                  
+[  5]   1.00-2.00   sec  12.1 GBytes  103859 Mbits/sec                  
+[  5]   2.00-3.00   sec  12.3 GBytes  106065 Mbits/sec                  
+[  5]   3.00-4.00   sec  12.4 GBytes  106587 Mbits/sec                  
+[  5]   4.00-5.00   sec  12.4 GBytes  106216 Mbits/sec                  
+[  5]   5.00-6.00   sec  12.3 GBytes  106041 Mbits/sec                  
+[  5]   6.00-7.00   sec  12.4 GBytes  106503 Mbits/sec                  
+[  5]   7.00-8.00   sec  12.4 GBytes  106259 Mbits/sec                  
+[  5]   8.00-9.00   sec  12.3 GBytes  105372 Mbits/sec                  
+[  5]   9.00-10.00  sec  12.3 GBytes  106187 Mbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-10.00  sec   123 GBytes  105526 Mbits/sec                  sender
+[  5]   0.00-10.00  sec   123 GBytes  105525 Mbits/sec                  receiver
+
+iperf Done.

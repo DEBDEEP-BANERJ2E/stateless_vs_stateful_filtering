@@ -47,10 +47,25 @@ const Reports = () => {
       });
   };
 
+  // Function to highlight specific terms in the inference text
+  const highlightInferences = (text) => {
+    const regex = /(extremely high|significantly higher|moderately higher|slightly higher|moderately better|significantly better|extremely low|outstanding|superior|exceptional)/gi;
+    return text.split(regex).map((part, index) => {
+      if (regex.test(part)) {
+        return (
+          <span key={index} style={{ color: 'red', fontWeight: 'bold' }}>
+            {part}
+          </span>
+        );
+      }
+      return part;
+    });
+  };
+
   return (
     <div>
       <h1>Benchmark Reports</h1>
-      <table style={{ marginLeft: '20px'}}>
+      <table style={{ marginLeft: '20px' }}>
         <thead>
           <tr>
             <th>Time Interval (s)</th>
@@ -104,7 +119,7 @@ const Reports = () => {
           <ul>
             {Object.entries(benchmarkInferences).map(([key, value]) => (
               <li key={key}>
-                <strong>{key}:</strong> {value} {/* Displaying inferences */}
+                <strong>{key}:</strong> {highlightInferences(value)} {/* Displaying inferences with highlighted terms */}
               </li>
             ))}
           </ul>

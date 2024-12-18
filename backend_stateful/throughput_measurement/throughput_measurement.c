@@ -3,11 +3,11 @@
 #include <string.h>
 
 void measure_throughput(const char *target_ip, int duration) {
-    printf("Measuring throughput to %s for %d seconds...\n", target_ip, duration);
+    printf("Measuring TCP throughput to %s for %d seconds...\n", target_ip, duration);
 
-    // Run the iperf3 command and capture the output in a human-readable format
-    char command[256];
-    snprintf(command, sizeof(command), "iperf3 -c %s -p 80 -t %d -f m > results.txt", target_ip, duration);
+    // Run the iperf3 command for TCP and capture the output in a human-readable format
+    char command[512];
+    snprintf(command, sizeof(command), "iperf3 -c %s -p 80 -t %d -f m -b 1G > results.txt", target_ip, duration);
     
     // Execute the command and write the result to results.txt
     int ret = system(command);
@@ -16,5 +16,5 @@ void measure_throughput(const char *target_ip, int duration) {
         return;
     }
 
-    printf("Throughput measurement completed.\n");
+    printf("TCP throughput measurement completed.\n");
 }
