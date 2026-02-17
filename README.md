@@ -2,7 +2,7 @@
 IEEE IIFON Hackathon
 
 Team members-
-Debdeep Bnaerjee
+Debdeep Banerjee
 Sudhanshu Shekhar
 Prof. Joydev Hazra
 
